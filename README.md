@@ -2,4 +2,4 @@
 ## Le retour : Python Django
 
 Objectif:
- [ ] Afficher une page web
+- [ ] Afficher une page web
