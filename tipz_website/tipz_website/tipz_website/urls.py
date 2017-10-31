@@ -19,9 +19,13 @@ from django.views.generic import RedirectView
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
+from rest_framework.urlpatterns import format_suffix_patterns
+from snippets import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls), 
     url(r'^tipz/', include('tipz.urls')),
     url(r'^$', RedirectView.as_view(url='/tipz/', permanent=True)),
+    url(r'^snippets/$', views.snippet_list),
+    url(r'^snippets/(?P<pk>[0-9]+)$', views.snippet_detail),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
