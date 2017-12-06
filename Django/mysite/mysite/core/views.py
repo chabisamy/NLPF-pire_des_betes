@@ -16,3 +16,8 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+def login(request):
+    user = authenticate(username='john', password='secret')
+    
+    return render(request, 'login.html', {'form': form})
