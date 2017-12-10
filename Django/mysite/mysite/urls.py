@@ -16,7 +16,16 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from mysite.core import views as core_views
+from mysite.projects import views as project_views
+from django.contrib.auth import views as auth_views
+
+
+
 urlpatterns = [
+    url(r'^$', project_views.index, name='index'),
     url(r'^admin/', admin.site.urls),
-     url(r'^signup/$', core_views.signup, name='signup'),
+    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
+    url(r'^new_project/$', project_views.new_project, name='new_project'),
+    url(r'^signup/$', core_views.signup, name='signup'),
 ]
