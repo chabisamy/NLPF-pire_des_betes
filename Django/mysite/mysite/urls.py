@@ -16,10 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from mysite.core import views as core_views
+from mysite.home import views as home_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^base/$', core_views.signup, name='signup'),
+    url(r'^home/$', home_views.home, name='home'),
     url(r'^signup/$', core_views.signup, name='signup'),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
 ]
