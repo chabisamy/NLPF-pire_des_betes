@@ -3,7 +3,7 @@
 {% block title %}Project{% endblock %}
 
 {% block content %}
-    <h1>{{ project.name }}</h1>
+    <h1>Project name: {{ project.name }}</h1>
     <p>{{ project.description }}</p>
 
     {% for counterpart in project.counterparts %}

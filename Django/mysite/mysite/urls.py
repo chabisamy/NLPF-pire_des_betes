@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^new_project/$', project_views.new_project, name='new_project'),
     url(r'^signup/$', core_views.signup, name='signup'),
+    url(r'^project/(?P<pk>[-\w]+)/$', project_views.project_details, name='project_details'),
 ]

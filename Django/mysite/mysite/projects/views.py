@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
-
+from django import forms
+from .forms import ProjectForm
 from .models import Project
 
 
@@ -20,3 +21,7 @@ def new_project(request):
             return render(request, 'new_project.html')
     else:
         return redirect("login")
+
+def project_details(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, 'project.html', {'project': project})
