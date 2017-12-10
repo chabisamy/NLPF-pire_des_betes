@@ -25,3 +25,11 @@ def new_project(request):
 def project_details(request, pk):
     project = get_object_or_404(Project, pk=pk)
     return render(request, 'project.html', {'project': project})
+
+def add_counterpart(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    if request.POST.get('name', False) and request.POST.get('description', False):
+            Project.objects.create(project=request.project, name=request.POST['name'], description=request.POST['price'])
+            return redirect("project")
+    else:
+        return render(request, 'counterpart.html')

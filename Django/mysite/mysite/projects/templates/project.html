@@ -11,6 +11,6 @@
     {% endfor %}
 
     {% if user.is_authenticated and user.username == project.author.username %}
-        <a href="/projects/{{ project.id }}/add_counterpart">Add a new counterpart</a>
+        <a href="/project/{{ project.id }}/add_counterpart">Add a new counterpart</a>
     {% endif %}
 {% endblock %}

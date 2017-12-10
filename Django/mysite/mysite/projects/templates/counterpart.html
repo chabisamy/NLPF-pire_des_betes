@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}New Project{% endblock %}
+
+{% block content %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'project/{{project.id}}/add_counterpart' %}" method="post">
+{% csrf_token %}
+    <label for="name">Counterpart amount: </label>
+    <input type="number" name="name" id="name" placeholder="0" /> <br />
+<input type="submit" value="Add counterpart" />
+</form>
+{% endblock %}

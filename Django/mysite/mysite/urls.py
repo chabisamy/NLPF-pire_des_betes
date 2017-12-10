@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^new_project/$', project_views.new_project, name='new_project'),
     url(r'^signup/$', core_views.signup, name='signup'),
     url(r'^project/(?P<pk>[-\w]+)/$', project_views.project_details, name='project_details'),
+    url(r'^project/(?P<pk>[-\w]+)/add_counterpart/$', project_views.add_counterpart, name='add_counterpart'),
 ]
