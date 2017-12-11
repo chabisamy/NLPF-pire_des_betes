@@ -4,6 +4,7 @@ from django.template import loader
 from django import forms
 from .forms import ProjectForm
 from .models import Project
+from .models import CounterPart
 
 
 # Create your views here.
@@ -22,14 +23,34 @@ def new_project(request):
     else:
         return redirect("login")
 
+def project_edit(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    if request.user.is_authenticated and request.user.username == project.author.username:
+        project = get_object_or_404(Project, pk=pk)
+        if request.method == "POST":
+            form = ProjectForm(request.POST, instance=project)
+            if form.is_valid():
+                project = form.save(commit=False)
+                project.author = request.user
+                project.name = request.name
+                project.description = request.description
+                project.save()
+                return redirect('project', pk=project.pk)
+        else:
+            form = ProjectForm(instance=project)
+        return render(request, 'project_edit.html', {'form': form})
+
+
 def project_details(request, pk):
     project = get_object_or_404(Project, pk=pk)
     return render(request, 'project.html', {'project': project})
 
 def add_counterpart(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    if request.POST.get('name', False) and request.POST.get('description', False):
-            Project.objects.create(project=request.project, name=request.POST['name'], description=request.POST['price'])
-            return redirect("project")
+    if request.POST.get('name', False) and request.POST.get('price', False):
+        project = get_object_or_404(Project, pk=pk)
+        CounterPart.objects.create(name=request.POST['name'], price=request.POST['price'])
+        return redirect("project", pk=project.id)
     else:
-        return render(request, 'counterpart.html')
+            return render(request, 'counterpart.html')
+    

@@ -24,10 +24,11 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^$', project_views.index, name='index'),
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^my_login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^new_project/$', project_views.new_project, name='new_project'),
     url(r'^signup/$', core_views.signup, name='signup'),
     url(r'^project/(?P<pk>[-\w]+)/$', project_views.project_details, name='project_details'),
     url(r'^project/(?P<pk>[-\w]+)/add_counterpart/$', project_views.add_counterpart, name='add_counterpart'),
+    url(r'^project/(?P<pk>[-\w]+)/project_edit/$', project_views.project_edit, name='project_edit'),
 ]
