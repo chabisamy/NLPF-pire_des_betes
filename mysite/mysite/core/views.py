@@ -24,9 +24,9 @@ def my_login(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return render(request, '../base.html', {'form': form}) 
+        return render(request, '../templates/base.html', {'form': form}) 
     else:
-        return render(request, '../base.html', {'form': form})
+        return render(request, '../templates/base.html', {'form': form})
 
 def logout(request):
     logout(request)
