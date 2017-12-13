@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Project{% endblock %}
+
+{% block content %}
+    <h1>Project name: {{ project.name }}</h1>
+    <p>{{ project.description }}</p>
+
+    {% for counterpart in project.counterparts %}
+        {{ counterpart.name }} : {{ counterpart.price }} € <a href="/counterpart/participate/{{ counterpart.id }}">Participer</a>
+    {% endfor %}
+
+    {% if user.is_authenticated and user.username == project.author.username %}
+        <a href="/project/{{ project.id }}/add_counterpart">Add a new counterpart</a>
+    {% endif %}
+{% endblock %}

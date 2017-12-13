@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+    {% for project in projects_list %}
+        <li>
+            <a href="{% url 'project_details' pk=project.pk %}"><b>{{ project.name }}</b> :{{ project.id }} {{ project.description }} <i>by {{ project.author.username }}</i> ({{ project.published_date }})</a>
+            <a class="btn btn-default" href="{% url 'project_edit' pk=project.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
