@@ -13,4 +13,4 @@ class Project(models.Model):
 class CounterPart(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    price = models.DecimalField(decimal_places=2, max_digits=2)
+    price = models.DecimalField(decimal_places=3, max_digits=10)

@@ -1,12 +1,12 @@
  FROM python:3.5
 
- ENV PYTHONPATH /nlpf
+ ENV PYTHONPATH /mysite
  ENV PYTHONUNBUFFERED 1
 
- RUN mkdir /nlpf
- WORKDIR /nlpf
+ RUN mkdir /mysite
+ WORKDIR /mysite
 
- COPY requirements.txt /nlpf/
+ COPY requirements.txt /mysite/
  RUN pip install -r requirements.txt
 
- COPY . /nlpf/
+ COPY . /mysite/

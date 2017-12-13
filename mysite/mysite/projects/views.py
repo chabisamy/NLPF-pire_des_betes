@@ -48,9 +48,8 @@ def project_details(request, pk):
 def add_counterpart(request, pk):
     project = get_object_or_404(Project, pk=pk)
     if request.POST.get('name', False) and request.POST.get('price', False):
-        project = get_object_or_404(Project, pk=pk)
         CounterPart.objects.create(project=project, name=request.POST['name'], price=request.POST['price'])
         return render(request, 'project.html', {'project': project})
     else:
-            return render(request, 'counterpart.html')
+            return render(request, 'counterpart.html', {'project': project})
     
