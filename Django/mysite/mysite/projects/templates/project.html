@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Project{% endblock %}
+
+{% block content %}
+    <h1>{{ project.name }}</h1>
+    <p>{{ project.description }}</p>
+
+    <h2>Available counterparts :</h2>
+
+    <ul>
+    {% for counterpart in project.counterparts.all %}
+        <li>{{ counterpart.name }} : {{ counterpart.price }} € {% if user.is_authenticated %} <a href="/participate/{{ counterpart.id }}/">Participer</a>{% endif %}</li>
+    {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated and user.username == project.author.username %}
+        <h2>Add a counterpart to your project : </h2>
+        <form action="{% url 'project' project.id %}" method="post">
+            {% csrf_token %}
+                <label for="name">Counterpart name : </label>
+                <input type="text" name="name" id="name" placeholder="Counterpart Name" /> <br />
+
+                <label for="value">Counterpart value : </label>
+                <input type="number" name="value" id="value" /> <br />
+            <input type="submit" value="Add a new counterpart" />
+        </form>
+    {% endif %}
+{% endblock %}
